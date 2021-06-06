@@ -1,0 +1,5 @@
+*.iml
+.idea
+cqrs-core/target
+cqrs-read/target
+cqrs-write/target

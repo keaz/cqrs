@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cqrs-write
+  cloud:
+    stream:
+       kafka:
+         binder:
+           brokers:
+             - localhost:9092
+       bindings:
+         event-producer:
+           contentType: application/json
+           destination: event_stream
+  datasource:
+    url: jdbc:mysql://host.docker.internal:3306/cqrs_write
+    username: root
+    password: Server@123
+    hikari:
+      allow-pool-suspension: true
+      maximum-pool-size: 10
+      pool-name: cqrs-write-pool
+  jpa:
+    hibernate:
+      ddl-auto: update
