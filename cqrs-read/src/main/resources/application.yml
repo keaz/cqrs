@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cqrs-write
+    name: cqrs-read
   cloud:
     stream:
        kafka:
@@ -8,19 +8,17 @@ spring:
            brokers:
              - localhost:9092
        bindings:
-         event-producer:
+         event-consumer:
            contentType: application/json
            destination: event_stream
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/cqrs_write
+    url: jdbc:mysql://host.docker.internal:3306/cqrs_read
     username: root
     password: Server@123
     hikari:
       allow-pool-suspension: true
       maximum-pool-size: 10
-      pool-name: cqrs-write-pool
+      pool-name: cqrs-read-pool
   jpa:
     hibernate:
       ddl-auto: update
-server:
-  port: 8091

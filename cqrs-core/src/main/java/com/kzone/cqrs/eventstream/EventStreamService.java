@@ -5,19 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
+import static com.kzone.cqrs.eventstream.EventStream.EVENT_TYPE;
+
 @RequiredArgsConstructor
 @Service
 public class EventStreamService {
 
-    private static final String EVENT_TYPE = "x-event-type";
 
     @Autowired
     private final EventStream eventStream;
 
 
-    public void publish(Object accountCreated, String eventType) {
+    public void publish(Object event, String eventType) {
         eventStream.producer()
-                .send(MessageBuilder.withPayload(accountCreated)
+                .send(MessageBuilder.withPayload(event)
                         .setHeader(EVENT_TYPE, eventType)
                         .build());
     }

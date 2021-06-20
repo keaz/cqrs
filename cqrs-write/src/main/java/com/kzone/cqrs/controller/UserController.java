@@ -4,8 +4,6 @@ import com.kzone.cqrs.aggregate.AccountAggregate;
 import com.kzone.cqrs.command.CreateAccount;
 import com.kzone.cqrs.command.DepositMoney;
 import com.kzone.cqrs.core.Aggregate;
-import com.kzone.cqrs.event.AccountCreated;
-import com.kzone.cqrs.event.MoneyDeposited;
 import com.kzone.cqrs.events.AggregateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

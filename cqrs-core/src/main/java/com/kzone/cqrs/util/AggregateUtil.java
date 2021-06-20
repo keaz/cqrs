@@ -102,7 +102,7 @@ public class AggregateUtil {
                 .collect(Collectors.toList());
     }
 
-    public Method getEventHandler(Object aggregate, Object event) {
+    public static Method getEventHandler(Object aggregate, Object event) {
         var methods = getEventHandlingMethods(aggregate);
         log.debug("Event handler methods {}", methods);
         List<Method> collect = methods.stream().filter(method -> {
