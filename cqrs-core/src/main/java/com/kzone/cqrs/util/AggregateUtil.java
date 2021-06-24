@@ -1,7 +1,7 @@
 package com.kzone.cqrs.util;
 
-import com.kzone.cqrs.core.AggregateId;
 import com.kzone.cqrs.core.Version;
+import com.kzone.cqrs.core.AggregateId;
 import com.kzone.cqrs.listener.OnEvent;
 import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +12,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -26,9 +25,9 @@ import static java.util.Locale.ENGLISH;
 public class AggregateUtil {
 
     public static String getAggregateId(Object event) {
-        Class<?> eventClass = event.getClass();
-        Field[] declaredFields = eventClass.getDeclaredFields();
-        for (Field declaredField : declaredFields) {
+        var eventClass = event.getClass();
+        var declaredFields = eventClass.getDeclaredFields();
+        for (var declaredField : declaredFields) {
             if (declaredField.getAnnotation(AggregateId.class) == null) {
                 continue;
             }
@@ -59,7 +58,7 @@ public class AggregateUtil {
 
     private static Object readValue(Object event, String fieldName) throws InvocationTargetException, IllegalAccessException {
 
-        String getter = createGetter(fieldName);
+        var getter = createGetter(fieldName);
         var getterMethod = ReflectionUtils.findMethod(event.getClass(), getter);
         if (getterMethod == null) {
             throw new RuntimeException("Cannot find getter method for field " + fieldName);
@@ -69,7 +68,7 @@ public class AggregateUtil {
 
     private static Object writeValue(Object event, String fieldName, Object value) throws InvocationTargetException, IllegalAccessException {
 
-        String getter = createSetter(fieldName);
+        var getter = createSetter(fieldName);
         var getterMethod = ReflectionUtils.findMethod(event.getClass(), getter);
         if (getterMethod == null) {
             throw new RuntimeException("Cannot find setter method for field " + fieldName);
@@ -79,8 +78,8 @@ public class AggregateUtil {
 
     public static long getVersion(Object event) {
 
-        Field[] declaredFields = event.getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
+        var declaredFields = event.getClass().getDeclaredFields();
+        for (var declaredField : declaredFields) {
             if (declaredField.getAnnotation(Version.class) == null) {
                 continue;
             }

@@ -1,5 +1,7 @@
 *.iml
 .idea
 cqrs-core/target
-cqrs-read/target
 cqrs-write/target
+cqrs-read/target
+*/target
+.DS_Store
