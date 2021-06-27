@@ -7,21 +7,13 @@ spring:
          binder:
            brokers:
              - localhost:9092
+             - localhost:9096
+             - localhost:9010
        bindings:
          event-consumer:
            contentType: application/json
-           destination: event_stream
-  datasource:
-    url: jdbc:mysql://host.docker.internal:3306/cqrs_read
-    username: root
-    password: Server@123
-    hikari:
-      allow-pool-suspension: true
-      maximum-pool-size: 10
-      pool-name: cqrs-read-pool
-  jpa:
-    hibernate:
-      ddl-auto: update
+           destination: cqrs_demo
+           group: cqrs_read
   data:
     cassandra:
       keyspace-name: cqrs_read

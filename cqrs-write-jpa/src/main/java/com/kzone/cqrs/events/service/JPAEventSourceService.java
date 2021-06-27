@@ -1,11 +1,10 @@
 package com.kzone.cqrs.events.service;
 
 import com.kzone.cqrs.events.EventDTO;
-import com.kzone.cqrs.events.EventSourceService;
-import com.kzone.cqrs.util.AggregateUtil;
 import com.kzone.cqrs.events.JPAEventRepository;
 import com.kzone.cqrs.events.entites.EventEntity;
 import com.kzone.cqrs.events.entites.EventId;
+import com.kzone.cqrs.util.AggregateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +46,7 @@ public class JPAEventSourceService implements EventSourceService {
 
     @Override
     public boolean eventExists(String aggregateId, long version) {
-        return eventRepository.eventExists(aggregateId,version);
+        return eventRepository.eventExists(aggregateId, version);
     }
 
 }

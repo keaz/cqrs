@@ -1,4 +1,6 @@
-package com.kzone.cqrs.events;
+package com.kzone.cqrs.events.service;
+
+import com.kzone.cqrs.events.EventDTO;
 
 import java.util.List;
 

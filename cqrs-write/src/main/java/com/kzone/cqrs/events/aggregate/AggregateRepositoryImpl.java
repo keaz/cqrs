@@ -3,7 +3,7 @@ package com.kzone.cqrs.events.aggregate;
 import com.kzone.cqrs.core.AggregateId;
 import com.kzone.cqrs.events.EventBus;
 import com.kzone.cqrs.events.EventDTO;
-import com.kzone.cqrs.events.EventSourceService;
+import com.kzone.cqrs.events.service.EventSourceService;
 import com.kzone.cqrs.util.AggregateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

@@ -4,11 +4,8 @@ import com.kzone.cqrs.core.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class SyncEventBus implements EventBus {
 
     private final EventStreamService eventStreamService;

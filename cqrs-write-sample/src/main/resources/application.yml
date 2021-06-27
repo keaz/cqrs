@@ -3,14 +3,35 @@ spring:
     name: cqrs-write
   cloud:
     stream:
-       kafka:
-         binder:
-           brokers:
-             - localhost:9092
-       bindings:
-         event-producer:
-           contentType: application/json
-           destination: event_stream
+      kafka:
+        binder:
+          required-acks: all
+          producer-properties:
+            enable:
+              idempotence: true
+            acks: all
+            retries: 2147483647
+            max:
+              in:
+                flight:
+                  requests:
+                    per:
+                      connection: 5
+          brokers:
+            - localhost:9092
+            - localhost:9096
+            - localhost:9010
+      bindings:
+        event-producer:
+          contentType: application/json
+          destination: cqrs_demo
+          producer:
+            partitionKeyExpression: headers['x-event-type']
+            partitionCount: 6
+        event-consumer:
+          group: fake_write_group
+          consumer:
+            autoStartup: false
   datasource:
     url: jdbc:mysql://host.docker.internal:3306/cqrs_write
     username: root
